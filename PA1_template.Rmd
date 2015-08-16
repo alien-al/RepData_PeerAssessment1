@@ -34,7 +34,7 @@ We need to aggregate data and then plot.
 We are using the library (ggplot2).  
 (make sure you have that library installed.)
 
-```{r}
+```{r Average of steps taken}
 library(ggplot2)
 df.averages <- aggregate(x=list(steps=df$steps), by=list(interval=df$interval), FUN=mean, na.rm=TRUE)
 ggplot(data=df.averages, aes(x=interval, y=steps)) + geom_line() + xlab("Intervals set at 5 minutes") + ylab("Average of steps taken")
@@ -71,7 +71,7 @@ head(filled.df)
 
 Visualization of the filled in data set.
 
-```{r}
+```{r Total Number of Steps per Day After Imputation}
 filled_ds <- tapply(filled.df$steps, filled.df$date, FUN=sum)
 qplot(filled_ds, binwidth=1000, xlab="Total Number of Steps per Day",main="Total Number of Steps per Day After Imputation")
 ```
@@ -109,7 +109,7 @@ head(filled.df$day)
 
 Now, we have to visually explore the data that we created.  
 Do people take more steps on the weekends or the weekdays? 
-```{r}
+```{r Number of steps Weekdays Weekends}
 avg <- aggregate(steps ~ interval + day, data=filled.df, mean)
 ggplot(avg, aes(interval, steps))+geom_line()+ facet_grid(day ~ .) + xlab("Intervals at 5 minutes") + ylab("# of Steps")
 ```

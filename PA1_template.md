@@ -58,7 +58,7 @@ df.averages <- aggregate(x=list(steps=df$steps), by=list(interval=df$interval), 
 ggplot(data=df.averages, aes(x=interval, y=steps)) + geom_line() + xlab("Intervals set at 5 minutes") + ylab("Average of steps taken")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+![](PA1_template_files/figure-html/Average of steps taken-1.png) 
 
 ## Imputing missing values
 This dataset has many missing values that are coded as NA. The very presence of the missing data may introduce what is known as bias into the data analysis process. We need to take care to address this and carefully impute the data using r. First we identify the number of missing items from the dataframe. Finally, we generate a table to identify the number of missing items in this dataset.
@@ -116,7 +116,7 @@ filled_ds <- tapply(filled.df$steps, filled.df$date, FUN=sum)
 qplot(filled_ds, binwidth=1000, xlab="Total Number of Steps per Day",main="Total Number of Steps per Day After Imputation")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-8-1.png) 
+![](PA1_template_files/figure-html/Total Number of Steps per Day After Imputation-1.png) 
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -163,6 +163,6 @@ avg <- aggregate(steps ~ interval + day, data=filled.df, mean)
 ggplot(avg, aes(interval, steps))+geom_line()+ facet_grid(day ~ .) + xlab("Intervals at 5 minutes") + ylab("# of Steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-11-1.png) 
+![](PA1_template_files/figure-html/Number of steps Weekdays Weekends-1.png) 
 
 From the graph we see that weekday steps start out similar to the weekend steps. 
